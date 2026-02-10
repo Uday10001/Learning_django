@@ -8,4 +8,5 @@ def aboutTale(req):
 def hel(req):
     return render(req, template_name="help.html")
 def save_data(req):
+    print(req.POST)
     return HttpResponse("Data Saved")
