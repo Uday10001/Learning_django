@@ -9,9 +9,7 @@
 <div class="container py-5">
 
     <form  action= "{% url 'save_data' %}" method= "post" class="container mx-auto card p-4">
-        {% for message in messages %}
-                <div class="mb-3 alert alert-danger">{{message}}</div>
-        {% endfor %}
+            {% include 'components/showMessage.html' %}
         {% csrf_token %}
         <div class="mb-3">
             <label for="title">Note Title</label>
@@ -40,10 +38,6 @@
                 Add Note
             </button>
         </div>
-        <!-- <div class="mb-3 alert-danger alert">Details Not saved</div>
- <div class="mb-3 alert-success alert">Details saved</div> -->
-
-        
     </form>
 
 
