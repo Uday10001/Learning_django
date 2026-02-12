@@ -7,7 +7,7 @@ def tale(req):
 def aboutTale(req):
     return render(req, template_name="about.html")
 
-def hel(req):
+def hel(req):  
     notes = Note.objects.all()
     return render(req, template_name="help.html", context={"notes": notes})
 def save_data(req):

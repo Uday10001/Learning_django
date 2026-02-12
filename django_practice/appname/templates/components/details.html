@@ -1,83 +1,39 @@
 {% load static %}
 
 {% block content%}
+<div class="container py-4">
+    <h4 class="mb-3">Scrollable Card Grid</h4>
 
-<div class="container"><h1>Notes</h1>
-    <div class="row">
-      {% for note in notes %}
-            <main class="main-container">
-    <svg class="svg-container">
-      <defs>
-        <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
-          <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
-            <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
+    <div class="card-scroll-container">
 
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
-          <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
-            <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+            {% for note in notes %}
+            <!-- Card 1 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{note.title}}</h5>
+                        <p class="card-text">
+                            {{note.description}}
+                        </p>
+                    </div>
+                    <div class="d-flex flex-column gap-2">
+                            <button class="btn btn-sm btn-outline-primary">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </button>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+            
 
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="2" />
-          <feOffset in="noise1" dx="0" dy="0" result="offsetNoise3">
-            <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
 
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="2" />
-          <feOffset in="noise2" dx="0" dy="0" result="offsetNoise4">
-            <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
-          </feOffset>
-
-          <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
-          <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
-          <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
-
-          <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
-        </filter>
-      </defs>
-    </svg>
-
-    <div class="card-container">
-      <div class="inner-container">
-        <div class="border-outer">
-          <div class="main-card"></div>
         </div>
-        <div class="glow-layer-1"></div>
-        <div class="glow-layer-2"></div>
-      </div>
-
-      <div class="overlay-1"></div>
-      <div class="overlay-2"></div>
-      <div class="background-glow"></div>
-
-      <div class="content-container">
-        <div class="content-top">
-          <div class="scrollbar-glass">
-            {{note.title}}
-          </div>
-          <p class="title">{{note.description}}</p>
-        </div>
-
-        <hr class="divider" />
-
-        <div class="content-bottom">
-          <button 
-                style="width: 100%;" 
-                class="btn btn-primary">
-                Edit Notes
-            </button>
-          <button 
-                style="width: 100%;" 
-                class="btn btn-primary">
-                Delete Note
-            </button>
-        </div>
-      </div>
     </div>
-    </main>
-    {% endfor %}
-  </div>
 </div>
+
 
 {%endblock%}

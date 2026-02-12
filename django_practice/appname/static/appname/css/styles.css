@@ -3,7 +3,6 @@
 /* Reset and base styles */
 
 /* CSS Variables */
-
 * {
   margin: 0;
   box-sizing: border-box;
@@ -23,6 +22,9 @@ body {
     radial-gradient(circle at 80% 90%, #020617, transparent 70%), var(--bg);
   color: white;
   overflow-x: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* grain */
@@ -209,8 +211,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 500px;
+  width: 100%;
   background-color: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 /* SVG positioning */
@@ -395,13 +400,16 @@ body {
   position: relative;
   transition: background 0.3s ease;
   border-radius: 14px;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   padding: 8px 16px;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .scrollbar-glass:hover {
@@ -440,9 +448,12 @@ body {
 
 /* Typography */
 .title {
-  font-size: 36px;
+  font-size: 20px;
   font-weight: 500;
   margin-top: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .description {
@@ -1214,12 +1225,15 @@ progress {
 }
 .row {
   --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: calc(-1 * var(--bs-gutter-y));
-  margin-right: calc(-0.5 * var(--bs-gutter-x));
-  margin-left: calc(-0.5 * var(--bs-gutter-x));
+  --bs-gutter-y: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--bs-gutter-x);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: var(--bs-gutter-x);
+  margin: 0;
+  background-color: #031633;
 }
 .row > * {
   flex-shrink: 0;
