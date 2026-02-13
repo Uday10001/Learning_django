@@ -17,9 +17,16 @@ def save_data(req):
 
     if not title or not description:
             messages.error(req, "Fill all details")
-            return redirect("/help")
+            return redirect("/app/help")
     note = Note(title = title, description = description)
     note.save()
 
     messages.success(req, message="Details Saved")
-    return redirect("/help")
+    return redirect("/app/help")
+def delete_view(req, id):
+    note = Note.objects.get(id = id)
+    note.delete()
+    messages.success(req, "Note Deleted Successfully")
+    return redirect("app/help")
+def edit_view(req, id):
+    return HttpResponse("Edit Note: " + str(id))

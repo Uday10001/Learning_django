@@ -3,8 +3,10 @@ from .views import *
 
 urlpatterns = [
     path("", tale, name="tale"),
-    path("about", aboutTale, name='aboutTale'),
-    path("help", hel, name="Help"),
-    path("save_data", save_data, name = "save_data")
+    path("app/about", aboutTale, name='aboutTale'),
+    path("app/help", hel, name="Help"),
+    path("app/save_data", save_data, name = "save_data"),
+    path("app/delete/<int:id>", delete_view, name = "delete_view"),
+    path("app/edit/<int:id>", edit_view, name = "edit_view"),
 ]
 
