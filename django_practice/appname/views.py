@@ -29,4 +29,17 @@ def delete_view(req, id):
     messages.success(req, "Note Deleted Successfully")
     return redirect("app/help")
 def edit_view(req, id):
-    return HttpResponse("Edit Note: " + str(id))
+    note = Note.objects.get(id = id)
+    return render(req, template_name="editView.html", context={"note": note})
+def save_edited(req, id):
+    title = req.POST.get("title", "")
+    desc = req.POST.get("description", "")
+    if not title or not desc:
+        messages.error(req, "Details not filled properly")
+        return redirect("/app/help")
+    note = Note.objects.get(id = id)
+    note.title = title
+    note.description = desc
+    note.save()
+    messages.success(req, "Note updated")
+    return redirect("/app/help")

@@ -1,0 +1,44 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+
+{% block content %}
+{% include 'components/navbar.html' %}
+
+    <form  action= "{% url 'save_edited' note.id %}" method= "post" class="container mx-auto card p-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title">Note Title</label>
+            <input 
+                name = "title"
+                type="text" 
+                id="title" 
+                class="form-control" 
+                placeholder="Enter Note Title"
+                value = {{note.title}}
+                >
+                
+        </div>
+
+        <div class="mb-3">
+            <label for="desc">Note Description</label>
+            <textarea 
+                name = "description"
+                rows="5" 
+                id="desc" 
+                class="form-control" 
+                placeholder="Enter Note Description"
+                >{{note.description}}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <button 
+                style="width: 100%;" 
+                class="btn btn-primary">
+                Add Note
+            </button>
+        </div>
+    </form>
+
+
+{% endblock %}
